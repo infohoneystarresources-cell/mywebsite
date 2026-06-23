@@ -1,0 +1,3 @@
+Honey Star Resources Limited is positioning itself as a leading African investment and project development platform capable of facilitating transformational projects across strategic sectors.
+Our long-term objective is to become the preferred partner for governments, multinational corporations, development institutions, private investors, and entrepreneurs seeking opportunities in Nigeria and across Africa.
+By combining local expertise, international partnerships, strategic thinking, and execution excellence, we are committed to creating lasting value for our clients, partners, shareholders, and communities.
