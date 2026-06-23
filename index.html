@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Honey Star Resources Limited</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green-deep: #0d2818;
+    --green-mid: #1a4a2e;
+    --green-light: #2d6e44;
+    --green-muted: #3d8a57;
+    --gold: #c9962a;
+    --gold-light: #e8b94a;
+    --gold-pale: #f5e4b0;
+    --cream: #faf7f0;
+    --cream-dark: #f0ead8;
+    --text-dark: #0d2818;
+    --text-mid: #2d4a36;
+    --text-muted: #5a7a64;
+    --white: #ffffff;
+    --border: rgba(201,150,42,0.2);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13,40,24,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,150,42,0.25);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px;
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+  }
+
+  .nav-logo-mark {
+    width: 38px; height: 38px;
+    position: relative; display: flex; align-items: center; justify-content: center;
+  }
+
+  .star-svg { width: 38px; height: 38px; }
+
+  .nav-logo-text {
+    display: flex; flex-direction: column; line-height: 1.1;
+  }
+
+  .nav-logo-text .brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-weight: 700;
+    color: var(--gold-light);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-logo-text .brand-sub {
+    font-size: 9px; font-weight: 500;
+    color: rgba(232,185,74,0.6);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px; font-weight: 500;
+    color: rgba(250,247,240,0.75);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold-light); }
+
+  .nav-cta {
+    background: var(--gold);
+    color: var(--green-deep) !important;
+    padding: 8px 20px;
+    border-radius: 2px;
+    font-weight: 600 !important;
+    color: var(--green-deep) !important;
+  }
+
+  .nav-cta:hover { background: var(--gold-light); color: var(--green-deep) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--green-deep);
+    position: relative;
+    display: flex; align-items: center;
+    overflow: hidden;
+    padding: 0 5%;
+  }
+
+  .hero-bg-pattern {
+    position: absolute; inset: 0;
+    opacity: 0.04;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(201,150,42,0.5) 60px, rgba(201,150,42,0.5) 61px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(201,150,42,0.5) 60px, rgba(201,150,42,0.5) 61px);
+  }
+
+  .hero-star-bg {
+    position: absolute; right: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 55vw; max-width: 760px;
+    opacity: 0.06;
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 720px;
+    padding-top: 70px;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .hero-eyebrow-line {
+    width: 40px; height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-eyebrow-text {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(44px, 6vw, 82px);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.05;
+    margin-bottom: 28px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold-light);
+  }
+
+  .hero-desc {
+    font-size: 17px; font-weight: 300;
+    color: rgba(250,247,240,0.65);
+    max-width: 560px;
+    line-height: 1.75;
+    margin-bottom: 44px;
+  }
+
+  .hero-actions {
+    display: flex; align-items: center; gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--gold);
+    color: var(--green-deep);
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); }
+
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid rgba(201,150,42,0.4);
+    color: rgba(250,247,240,0.8);
+    font-size: 13px; font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--gold);
+    color: var(--gold-light);
+  }
+
+  .hero-stats {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: rgba(201,150,42,0.08);
+    border-top: 1px solid rgba(201,150,42,0.2);
+    display: flex;
+    z-index: 2;
+  }
+
+  .hero-stat {
+    flex: 1;
+    padding: 28px 5%;
+    border-right: 1px solid rgba(201,150,42,0.15);
+  }
+
+  .hero-stat:last-child { border-right: none; }
+
+  .hero-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px; font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .hero-stat-label {
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(250,247,240,0.45);
+  }
+
+  /* SECTION BASE */
+  section { padding: 96px 5%; }
+
+  .section-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .section-eyebrow-line {
+    width: 30px; height: 1px;
+    background: var(--gold);
+  }
+
+  .section-eyebrow-text {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .section-desc {
+    font-size: 16px; font-weight: 300;
+    color: var(--text-muted);
+    max-width: 580px;
+    line-height: 1.8;
+  }
+
+  /* ABOUT */
+  .about { background: var(--white); }
+
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .about-img-frame {
+    width: 100%; aspect-ratio: 4/5;
+    background: var(--green-deep);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .about-img-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--green-mid) 0%, var(--green-deep) 100%);
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .about-img-pattern {
+    width: 70%; height: 70%;
+    opacity: 0.12;
+  }
+
+  .about-gold-accent {
+    position: absolute;
+    bottom: -20px; right: -20px;
+    width: 120px; height: 120px;
+    border: 1px solid var(--gold);
+    border-radius: 2px;
+    z-index: -1;
+  }
+
+  .about-badge {
+    position: absolute;
+    top: 30px; left: -24px;
+    background: var(--gold);
+    color: var(--green-deep);
+    padding: 16px 20px;
+    border-radius: 2px;
+    text-align: center;
+  }
+
+  .about-badge-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px; font-weight: 700;
+    line-height: 1;
+    display: block;
+  }
+
+  .about-badge-text {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.75;
+  }
+
+  .about-content { }
+
+  .about-body {
+    font-size: 16px; font-weight: 300;
+    color: var(--text-muted);
+    line-height: 1.85;
+    margin-bottom: 32px;
+  }
+
+  .about-pillars {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px; margin-top: 36px;
+  }
+
+  .pillar {
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: var(--cream);
+  }
+
+  .pillar-icon {
+    width: 36px; height: 36px;
+    background: rgba(201,150,42,0.1);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 12px;
+  }
+
+  .pillar-icon svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+
+  .pillar h4 {
+    font-size: 13px; font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+  }
+
+  .pillar p {
+    font-size: 12px; color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* SERVICES */
+  .services { background: var(--cream); }
+
+  .services-inner { max-width: 1200px; margin: 0 auto; }
+
+  .services-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 56px;
+    flex-wrap: wrap; gap: 24px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .service-card {
+    background: var(--white);
+    padding: 36px 32px;
+    cursor: pointer;
+    transition: background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--gold);
+    transition: width 0.3s;
+  }
+
+  .service-card:hover::after { width: 100%; }
+  .service-card:hover { background: #fdf9f0; }
+
+  .service-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; font-weight: 400;
+    color: var(--gold);
+    margin-bottom: 20px;
+    letter-spacing: 0.05em;
+  }
+
+  .service-icon {
+    width: 44px; height: 44px;
+    background: rgba(13,40,24,0.06);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 18px;
+  }
+
+  .service-icon svg { width: 22px; height: 22px; stroke: var(--green-mid); fill: none; stroke-width: 1.5; }
+
+  .service-card h3 {
+    font-size: 16px; font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .service-card p {
+    font-size: 13px; color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .service-tags {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-top: 20px;
+  }
+
+  .service-tag {
+    display: inline-block;
+    padding: 5px 12px;
+    background: rgba(13,40,24,0.06);
+    border: 1px solid rgba(13,40,24,0.1);
+    border-radius: 2px;
+    font-size: 12px; font-weight: 500;
+    color: var(--green-mid);
+    letter-spacing: 0.02em;
+  }
+
+  /* PARTNERSHIP */
+  .partner-row {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 18px;
+    background: rgba(250,247,240,0.04);
+    border: 1px solid rgba(201,150,42,0.12);
+    font-size: 14px; font-weight: 400;
+    color: rgba(250,247,240,0.75);
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+
+  .partner-row:hover {
+    background: rgba(201,150,42,0.08);
+    border-color: rgba(201,150,42,0.35);
+    color: var(--gold-light);
+  }
+
+  /* COMPETITIVE ADVANTAGE */
+  .adv-item {
+    padding: 20px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .adv-item:hover {
+    border-color: var(--gold);
+    background: #fdf9f0;
+  }
+
+  .adv-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+  }
+
+  .adv-label {
+    font-size: 13px; font-weight: 500;
+    color: var(--text-dark);
+    line-height: 1.4;
+  }
+
+  /* WHY US */
+  .why { background: var(--green-deep); padding: 96px 5%; }
+
+  .why-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1.5fr;
+    gap: 80px; align-items: center;
+  }
+
+  .why .section-title { color: var(--cream); }
+  .why .section-desc { color: rgba(250,247,240,0.55); }
+
+  .why-features {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .why-feature {
+    padding: 28px 24px;
+    background: rgba(250,247,240,0.04);
+    border: 1px solid rgba(201,150,42,0.15);
+    border-radius: 2px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .why-feature:hover {
+    border-color: rgba(201,150,42,0.4);
+    background: rgba(250,247,240,0.06);
+  }
+
+  .why-feature-icon {
+    width: 40px; height: 40px;
+    background: rgba(201,150,42,0.1);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  .why-feature-icon svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+
+  .why-feature h4 {
+    font-size: 15px; font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+
+  .why-feature p {
+    font-size: 13px; color: rgba(250,247,240,0.5);
+    line-height: 1.7;
+  }
+
+  /* SECTORS */
+  .sectors { background: var(--white); }
+
+  .sectors-inner { max-width: 1200px; margin: 0 auto; }
+
+  .sectors-header { margin-bottom: 56px; }
+
+  .sectors-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .sector-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 16px 18px;
+    border: 1px solid var(--cream-dark);
+    border-radius: 2px;
+    background: var(--cream);
+    font-size: 13px; font-weight: 500;
+    color: var(--text-mid);
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .sector-item:hover {
+    border-color: var(--gold);
+    background: var(--white);
+    color: var(--text-dark);
+  }
+
+  .sector-dot {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* CONTACT */
+  .contact { background: var(--cream); }
+
+  .contact-inner {
+    max-width: 1000px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: start;
+  }
+
+  .contact-info { }
+
+  .contact-detail {
+    display: flex; align-items: flex-start; gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .contact-icon {
+    width: 40px; height: 40px;
+    background: rgba(201,150,42,0.1);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact-icon svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+
+  .contact-detail-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  .contact-detail-val {
+    font-size: 14px; color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .contact-form { }
+
+  .form-row { margin-bottom: 16px; }
+
+  .form-label {
+    display: block;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+
+  .form-input, .form-select, .form-textarea {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--white);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 2px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px; color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--gold);
+  }
+
+  .form-textarea { min-height: 120px; resize: vertical; }
+
+  .form-submit {
+    width: 100%;
+    padding: 14px;
+    background: var(--green-deep);
+    color: var(--cream);
+    border: none;
+    border-radius: 2px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 8px;
+  }
+
+  .form-submit:hover { background: var(--green-mid); }
+
+  /* FOOTER */
+  footer {
+    background: var(--green-deep);
+    border-top: 1px solid rgba(201,150,42,0.2);
+    padding: 56px 5% 32px;
+  }
+
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 48px; margin-bottom: 48px;
+  }
+
+  .footer-brand .brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--gold-light);
+    display: block; margin-bottom: 4px;
+  }
+
+  .footer-brand .brand-sub {
+    font-size: 9px; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(232,185,74,0.5);
+    display: block; margin-bottom: 16px;
+  }
+
+  .footer-brand p {
+    font-size: 13px; color: rgba(250,247,240,0.4);
+    line-height: 1.7; max-width: 260px;
+  }
+
+  .footer-col h5 {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+
+  .footer-col ul a {
+    font-size: 13px; color: rgba(250,247,240,0.45);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-col ul a:hover { color: var(--gold-light); }
+
+  .footer-bottom {
+    max-width: 1200px; margin: 0 auto;
+    border-top: 1px solid rgba(201,150,42,0.12);
+    padding-top: 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+  }
+
+  .footer-bottom p {
+    font-size: 12px; color: rgba(250,247,240,0.3);
+  }
+
+  /* Animations */
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .spin-slow {
+    animation: spin-slow 60s linear infinite;
+    transform-origin: center;
+  }
+
+  @keyframes pulse-gold {
+    0%, 100% { opacity: 0.06; }
+    50% { opacity: 0.12; }
+  }
+
+  .hero-star-bg { animation: pulse-gold 8s ease-in-out infinite; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .about-inner, .why-inner, .contact-inner { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .sectors-list { grid-template-columns: repeat(2, 1fr); }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+    .hero-stats { flex-wrap: wrap; }
+    .hero-stat { border-right: none; border-bottom: 1px solid rgba(201,150,42,0.15); flex: 0 0 50%; }
+    .about-badge { display: none; }
+    .why-features { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .sectors-list { grid-template-columns: 1fr 1fr; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 40px; }
+    section { padding: 64px 5%; }
+    .about-pillars { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-mark">
+      <svg class="star-svg" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="19,2 23.5,14.5 37,14.5 26,22.5 30,36 19,28 8,36 12,22.5 1,14.5 14.5,14.5"
+          fill="none" stroke="#c9962a" stroke-width="1.5" stroke-linejoin="round"/>
+        <polygon points="19,7 22.5,16 32,16 24.5,21.5 27.5,31 19,25.5 10.5,31 13.5,21.5 6,16 15.5,16"
+          fill="#c9962a" opacity="0.25"/>
+      </svg>
+    </div>
+    <div class="nav-logo-text">
+      <span class="brand-name">Honey Star</span>
+      <span class="brand-sub">Resources Limited</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#sectors">Sectors</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg-pattern"></div>
+  <svg class="hero-star-bg" viewBox="0 0 700 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon class="spin-slow" points="350,20 420,250 660,250 475,395 545,630 350,485 155,630 225,395 40,250 280,250"
+      fill="none" stroke="#c9962a" stroke-width="2"/>
+    <polygon points="350,80 405,235 570,235 435,330 490,500 350,415 210,500 265,330 130,235 295,235"
+      fill="none" stroke="#c9962a" stroke-width="1" opacity="0.5"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span class="hero-eyebrow-text">Abuja, Nigeria</span>
+    </div>
+    <h1>Africa's Gateway to<br><em>Strategic Growth</em></h1>
+    <p class="hero-desc">
+      Honey Star Resources Limited is a diversified investment and development firm unlocking opportunities across energy, agriculture, mining, real estate, and beyond — connecting Africa's potential to global capital.
+    </p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-primary">
+        Explore Our Services
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#contact" class="btn-outline">Partner With Us</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">12+</div>
+      <div class="hero-stat-label">Service Sectors</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">Pan-Africa</div>
+      <div class="hero-stat-label">Market Reach</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">360°</div>
+      <div class="hero-stat-label">Integrated Solutions</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">Gov't</div>
+      <div class="hero-stat-label">Relations & Access</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-visual">
+      <div class="about-img-frame">
+        <div class="about-img-overlay">
+          <svg class="about-img-pattern" viewBox="0 0 300 300" fill="none">
+            <circle cx="150" cy="150" r="120" stroke="#c9962a" stroke-width="1"/>
+            <circle cx="150" cy="150" r="80" stroke="#c9962a" stroke-width="0.5"/>
+            <circle cx="150" cy="150" r="40" stroke="#c9962a" stroke-width="0.5"/>
+            <line x1="30" y1="150" x2="270" y2="150" stroke="#c9962a" stroke-width="0.5"/>
+            <line x1="150" y1="30" x2="150" y2="270" stroke="#c9962a" stroke-width="0.5"/>
+            <line x1="65" y1="65" x2="235" y2="235" stroke="#c9962a" stroke-width="0.3"/>
+            <line x1="235" y1="65" x2="65" y2="235" stroke="#c9962a" stroke-width="0.3"/>
+            <polygon points="150,30 180,120 270,120 200,175 225,265 150,215 75,265 100,175 30,120 120,120"
+              stroke="#c9962a" stroke-width="1" fill="none"/>
+          </svg>
+        </div>
+      </div>
+      <div class="about-gold-accent"></div>
+      <div class="about-badge">
+        <span class="about-badge-num">Est.</span>
+        <span class="about-badge-text">Founded<br>2024</span>
+      </div>
+    </div>
+
+    <div class="about-content">
+      <div class="section-eyebrow">
+        <div class="section-eyebrow-line"></div>
+        <span class="section-eyebrow-text">Who We Are</span>
+      </div>
+      <h2 class="section-title">Built on Trust,<br>Driven by Vision</h2>
+      <p class="about-body">
+        Honey Star Resources Limited is a leading diversified development and consulting firm headquartered in Abuja, Nigeria. We serve as a strategic bridge between investors, governments, and communities — turning Africa's vast resources into lasting prosperity.
+      </p>
+      <p class="about-body">
+        Our multidisciplinary team brings together expertise in finance, law, engineering, agriculture, and government relations to deliver integrated solutions that create measurable impact across the continent.
+      </p>
+
+      <div class="about-pillars">
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h4>Integrity First</h4>
+          <p>Transparent dealings and ethical standards at every level</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+          </div>
+          <h4>Global Network</h4>
+          <p>Deep connections across Africa, Europe, and Asia</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h4>Results Driven</h4>
+          <p>Measurable outcomes that transform communities</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h4>Local Expertise</h4>
+          <p>Grounded knowledge of African markets and institutions</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <div class="services-header">
+      <div>
+        <div class="section-eyebrow">
+          <div class="section-eyebrow-line"></div>
+          <span class="section-eyebrow-text">What We Do</span>
+        </div>
+        <h2 class="section-title">Comprehensive Solutions<br>Across Key Sectors</h2>
+      </div>
+      <p class="section-desc" style="max-width:340px; font-size:14px;">
+        Our integrated service model allows us to support clients from concept through completion — across twelve core disciplines.
+      </p>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+        </div>
+        <h3>Strategic Investment Facilitation</h3>
+        <p>We identify, structure, and facilitate investment opportunities between Nigerian businesses, government institutions, and international investors — creating partnerships that unlock capital and deliver growth.</p>
+      </div>
+
+      <div class="service-card" style="grid-column: span 2;">
+        <div class="service-num">02</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        </div>
+        <h3>Business Consulting</h3>
+        <p>Our consulting practice delivers tailored strategic solutions that help businesses navigate Nigeria's complex landscape and achieve sustainable growth.</p>
+        <div class="service-tags">
+          <span class="service-tag">Market Entry Strategy</span>
+          <span class="service-tag">Feasibility Studies</span>
+          <span class="service-tag">Business Planning</span>
+          <span class="service-tag">Corporate Advisory</span>
+          <span class="service-tag">Regulatory Compliance</span>
+          <span class="service-tag">Risk Assessment</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3>Government Relations</h3>
+        <p>Honey Star provides strategic engagement with federal, state, and regulatory agencies to support project approvals, licensing, stakeholder management, and policy engagement.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Project Development</h3>
+        <p>From concept development through execution, we coordinate multidisciplinary teams to ensure successful delivery of projects across every sector we serve.</p>
+      </div>
+
+      <div class="service-card" style="grid-column: span 2;">
+        <div class="service-num">05</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <h3>Financial Services</h3>
+        <p>Connecting businesses and institutions to modern financial tools, strategic capital, and inclusive finance solutions that drive economic participation and growth.</p>
+        <div class="service-tags">
+          <span class="service-tag">Digital Finance</span>
+          <span class="service-tag">Fintech Partnerships</span>
+          <span class="service-tag">Investment Advisory</span>
+          <span class="service-tag">Capital Raising</span>
+          <span class="service-tag">Financial Inclusion Projects</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">06</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22V12M12 12C12 12 8 9 4 10M12 12C12 12 16 9 20 10M4 10V6L12 2L20 6V10M4 10C6 11 8 12 12 12C16 12 18 11 20 10"/></svg>
+        </div>
+        <h3>Agriculture</h3>
+        <p>Full-spectrum agribusiness development — from commercial farming and processing to food security and commodity trading across Nigeria and beyond.</p>
+        <div class="service-tags">
+          <span class="service-tag">Commercial Farming</span>
+          <span class="service-tag">Agro-processing</span>
+          <span class="service-tag">Greenhouse Farming</span>
+          <span class="service-tag">Livestock</span>
+          <span class="service-tag">Irrigation</span>
+          <span class="service-tag">Commodity Trading</span>
+          <span class="service-tag">Food Security Projects</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">07</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <h3>Mining & Minerals</h3>
+        <p>From exploration to processing, we support every stage of solid mineral development with investment, equipment, and regulatory expertise.</p>
+        <div class="service-tags">
+          <span class="service-tag">Mineral Exploration</span>
+          <span class="service-tag">Mining Investments</span>
+          <span class="service-tag">Processing Facilities</span>
+          <span class="service-tag">Equipment Partnerships</span>
+          <span class="service-tag">Regulatory Advisory</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">08</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        </div>
+        <h3>Real Estate</h3>
+        <p>Developing landmark residential, commercial, and industrial properties — including smart communities and industrial parks that shape Nigeria's urban future.</p>
+        <div class="service-tags">
+          <span class="service-tag">Property Development</span>
+          <span class="service-tag">Industrial Parks</span>
+          <span class="service-tag">Housing Projects</span>
+          <span class="service-tag">Commercial Properties</span>
+          <span class="service-tag">Smart Communities</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">09</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <h3>Healthcare</h3>
+        <p>Building Africa's health infrastructure through hospital development, medical technology partnerships, pharmaceutical access, and digital health innovation.</p>
+        <div class="service-tags">
+          <span class="service-tag">Medical Equipment</span>
+          <span class="service-tag">Hospital Development</span>
+          <span class="service-tag">Pharmaceutical Partnerships</span>
+          <span class="service-tag">Digital Health Solutions</span>
+        </div>
+      </div>
+
+      <div class="service-card" style="grid-column: span 2;">
+        <div class="service-num">10</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h3>Energy</h3>
+        <p>Powering Nigeria's growth through gas infrastructure, LPG and LNG project development, gas-to-power solutions, renewables, and industrial energy services.</p>
+        <div class="service-tags">
+          <span class="service-tag">Gas Infrastructure</span>
+          <span class="service-tag">LPG Distribution</span>
+          <span class="service-tag">LNG Projects</span>
+          <span class="service-tag">Gas-to-Power</span>
+          <span class="service-tag">Renewable Energy</span>
+          <span class="service-tag">Industrial Energy Solutions</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">11</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h3>Infrastructure</h3>
+        <p>Roads, bridges, utilities, and public works — managing complex multi-stakeholder infrastructure projects from feasibility through commissioning.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">12</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+        </div>
+        <h3>International Trade</h3>
+        <p>Export-import facilitation, trade finance, customs advisory, and market entry strategy for businesses expanding across borders.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">13</div>
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        </div>
+        <h3>Strategic Consulting</h3>
+        <p>High-level advisory on market entry, organizational strategy, risk management, and business transformation for growth-focused enterprises.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <div class="why-inner" style="grid-template-columns: 1fr; max-width: 1100px;">
+    <div style="text-align: center; margin-bottom: 56px;">
+      <div class="section-eyebrow" style="justify-content: center;">
+        <div class="section-eyebrow-line"></div>
+        <span class="section-eyebrow-text">Why Honey Star Resources?</span>
+        <div class="section-eyebrow-line"></div>
+      </div>
+      <h2 class="section-title" style="color: var(--cream);">The Honey Star Advantage</h2>
+      <p class="section-desc" style="margin: 16px auto 0; text-align: center;">
+        Five pillars that set us apart and make us the partner of choice for investors, governments, and enterprises operating in Nigeria and across Africa.
+      </p>
+    </div>
+
+    <div class="why-features" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="why-feature">
+        <div class="why-feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h4>Strong Network</h4>
+        <p>Our relationships span government ministries, regulatory agencies, financial institutions, multinational corporations, investors, and development partners.</p>
+      </div>
+      <div class="why-feature">
+        <div class="why-feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h4>Local Expertise</h4>
+        <p>We understand Nigeria's regulatory environment, commercial landscape, and investment ecosystem — giving our clients a decisive edge on the ground.</p>
+      </div>
+      <div class="why-feature">
+        <div class="why-feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+        </div>
+        <h4>International Outlook</h4>
+        <p>We actively build partnerships with organizations across Africa, Europe, Asia, and the Middle East — connecting Nigeria to global opportunity.</p>
+      </div>
+      <div class="why-feature">
+        <div class="why-feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        </div>
+        <h4>Multi-sector Experience</h4>
+        <p>Our diversified portfolio enables us to identify cross-sector opportunities and deliver integrated solutions that single-sector firms simply cannot.</p>
+      </div>
+      <div class="why-feature" style="grid-column: span 2;">
+        <div class="why-feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h4>Project Delivery</h4>
+        <p>We coordinate technical experts, consultants, financiers, and implementation partners to deliver complex projects successfully — from concept through commissioning.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETITIVE ADVANTAGE -->
+<section style="background: var(--cream); padding: 96px 5%;" id="advantage">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+
+      <div>
+        <div class="section-eyebrow">
+          <div class="section-eyebrow-line"></div>
+          <span class="section-eyebrow-text">Our Competitive Advantage</span>
+        </div>
+        <h2 class="section-title">What Sets Us Apart</h2>
+        <p style="font-size: 16px; font-weight: 300; color: var(--text-muted); line-height: 1.85; margin-top: 16px;">
+          Honey Star Resources distinguishes itself through a rare combination of capabilities that enable us to move from strategy to execution with confidence and speed.
+        </p>
+        <p style="font-size: 16px; font-weight: 300; color: var(--text-muted); line-height: 1.85; margin-top: 16px; padding-top: 20px; border-top: 1px solid var(--border);">
+          Rather than simply providing advisory services, we serve as a <strong style="font-weight: 600; color: var(--text-dark);">long-term strategic partner</strong>, working alongside our clients throughout the entire project lifecycle.
+        </p>
+      </div>
+
+      <div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="adv-item">
+            <div class="adv-num">01</div>
+            <div class="adv-label">Strong Government Engagement</div>
+          </div>
+          <div class="adv-item">
+            <div class="adv-num">02</div>
+            <div class="adv-label">Strategic International Partnerships</div>
+          </div>
+          <div class="adv-item">
+            <div class="adv-num">03</div>
+            <div class="adv-label">Business Intelligence</div>
+          </div>
+          <div class="adv-item">
+            <div class="adv-num">04</div>
+            <div class="adv-label">Investment Structuring</div>
+          </div>
+          <div class="adv-item">
+            <div class="adv-num">05</div>
+            <div class="adv-label">Regulatory Navigation</div>
+          </div>
+          <div class="adv-item">
+            <div class="adv-num">06</div>
+            <div class="adv-label">Experienced Professional Network</div>
+          </div>
+          <div class="adv-item">
+            <div class="adv-num">07</div>
+            <div class="adv-label">Project Financing Support</div>
+          </div>
+          <div class="adv-item">
+            <div class="adv-num">08</div>
+            <div class="adv-label">End-to-End Project Management</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTORS HIGHLIGHT -->
+<section class="sectors" id="sectors">
+  <div class="sectors-inner">
+    <div class="sectors-header">
+      <div class="section-eyebrow">
+        <div class="section-eyebrow-line"></div>
+        <span class="section-eyebrow-text">Our Focus Areas</span>
+      </div>
+      <h2 class="section-title">Sectors We Serve</h2>
+      <p class="section-desc">
+        From the fields to the financial markets, our expertise spans every critical dimension of Nigeria and Africa's economy.
+      </p>
+    </div>
+
+    <div class="sectors-list">
+      <div class="sector-item"><div class="sector-dot"></div>Financial Services</div>
+      <div class="sector-item"><div class="sector-dot"></div>Investment Promotion</div>
+      <div class="sector-item"><div class="sector-dot"></div>Government Relations</div>
+      <div class="sector-item"><div class="sector-dot"></div>Agriculture & Agribusiness</div>
+      <div class="sector-item"><div class="sector-dot"></div>Mining & Minerals</div>
+      <div class="sector-item"><div class="sector-dot"></div>Energy & Power</div>
+      <div class="sector-item"><div class="sector-dot"></div>Real Estate Development</div>
+      <div class="sector-item"><div class="sector-dot"></div>Healthcare</div>
+      <div class="sector-item"><div class="sector-dot"></div>Infrastructure</div>
+      <div class="sector-item"><div class="sector-dot"></div>International Trade</div>
+      <div class="sector-item"><div class="sector-dot"></div>Strategic Consulting</div>
+      <div class="sector-item"><div class="sector-dot"></div>Project Development</div>
+    </div>
+  </div>
+</section>
+
+<!-- CORPORATE GOVERNANCE -->
+<section style="background: var(--white); padding: 96px 5%;" id="governance">
+  <div style="max-width: 1100px; margin: 0 auto;">
+
+    <div style="text-align: center; margin-bottom: 64px;">
+      <div class="section-eyebrow" style="justify-content: center;">
+        <div class="section-eyebrow-line"></div>
+        <span class="section-eyebrow-text">Corporate Governance &amp; Sustainability</span>
+        <div class="section-eyebrow-line"></div>
+      </div>
+      <h2 class="section-title">Responsible Business,<br>Lasting Impact</h2>
+      <p class="section-desc" style="margin: 16px auto 0; text-align: center; max-width: 620px;">
+        Honey Star Resources is committed to maintaining the highest standards of governance and responsible business conduct — integrating ESG principles into our core strategy to ensure sustainable growth.
+      </p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--border); border: 1px solid var(--border); margin-bottom: 48px;">
+
+      <div class="gov-card">
+        <div class="gov-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h4>Ethical Leadership</h4>
+        <p>Decisions guided by integrity and the long-term interests of all stakeholders.</p>
+      </div>
+
+      <div class="gov-card">
+        <div class="gov-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <h4>Transparency</h4>
+        <p>Open communication with clients, partners, regulators, and the public.</p>
+      </div>
+
+      <div class="gov-card">
+        <div class="gov-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        </div>
+        <h4>Regulatory Compliance</h4>
+        <p>Full adherence to Nigerian and international laws, standards, and frameworks.</p>
+      </div>
+
+      <div class="gov-card">
+        <div class="gov-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <h4>Financial Accountability</h4>
+        <p>Rigorous financial controls and reporting that build investor and stakeholder confidence.</p>
+      </div>
+
+      <div class="gov-card">
+        <div class="gov-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 22a8 8 0 0116 0"/><path d="M10 22a8 8 0 0116 0"/><circle cx="10" cy="10" r="4"/><path d="M22 5.5C22 8 19.5 10 19.5 10S17 8 17 5.5a2.5 2.5 0 015 0z"/></svg>
+        </div>
+        <h4>Environmental Responsibility</h4>
+        <p>Minimising environmental impact and championing sustainable resource management.</p>
+      </div>
+
+      <div class="gov-card">
+        <div class="gov-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h4>Community Development</h4>
+        <p>Creating shared prosperity by investing in the communities where we operate.</p>
+      </div>
+
+      <div class="gov-card">
+        <div class="gov-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        </div>
+        <h4>Employee Development</h4>
+        <p>Investing in our people through training, mentorship, and meaningful career growth.</p>
+      </div>
+
+      <div class="gov-card">
+        <div class="gov-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <h4>Responsible Investment</h4>
+        <p>Allocating capital to projects that generate economic returns alongside positive social outcomes.</p>
+      </div>
+
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+      <div class="esg-pill esg-e">
+        <div class="esg-letter">E</div>
+        <div>
+          <div class="esg-title">Environmental</div>
+          <div class="esg-sub">Climate-conscious operations &amp; resource stewardship</div>
+        </div>
+      </div>
+      <div class="esg-pill esg-s">
+        <div class="esg-letter">S</div>
+        <div>
+          <div class="esg-title">Social</div>
+          <div class="esg-sub">Community value, inclusion &amp; human capital</div>
+        </div>
+      </div>
+      <div class="esg-pill esg-g">
+        <div class="esg-letter">G</div>
+        <div>
+          <div class="esg-title">Governance</div>
+          <div class="esg-sub">Ethics, accountability &amp; regulatory integrity</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PARTNERSHIP PHILOSOPHY -->
+<section style="background: var(--green-deep); padding: 96px 5%;" id="partners">
+  <div style="max-width: 1100px; margin: 0 auto;">
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;">
+
+      <div>
+        <div class="section-eyebrow">
+          <div class="section-eyebrow-line"></div>
+          <span class="section-eyebrow-text">Partnership Philosophy</span>
+        </div>
+        <h2 class="section-title" style="color: var(--cream);">Built on Trust,<br>Grown Together</h2>
+        <p style="font-size: 16px; font-weight: 300; color: rgba(250,247,240,0.6); line-height: 1.85; margin-top: 16px;">
+          We believe that successful businesses are built through trust, collaboration, and shared value.
+        </p>
+        <p style="font-size: 16px; font-weight: 300; color: rgba(250,247,240,0.6); line-height: 1.85; margin-top: 16px;">
+          Honey Star Resources actively partners with organisations that share our commitment to impact — structuring every relationship to create measurable economic, financial, and social value.
+        </p>
+        <div style="margin-top: 36px; padding: 28px; border: 1px solid rgba(201,150,42,0.25); border-radius: 2px; background: rgba(201,150,42,0.05);">
+          <p style="font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--gold-light); line-height: 1.5; font-style: italic;">
+            "Every partnership is designed to create measurable economic, financial, and social impact."
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px;">We actively partner with</p>
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <div class="partner-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c9962a" stroke-width="2" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+            International Investors
+          </div>
+          <div class="partner-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c9962a" stroke-width="2" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+            Development Finance Institutions
+          </div>
+          <div class="partner-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c9962a" stroke-width="2" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+            Government Agencies
+          </div>
+          <div class="partner-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c9962a" stroke-width="2" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+            Technology Companies
+          </div>
+          <div class="partner-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c9962a" stroke-width="2" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+            Engineering Firms
+          </div>
+          <div class="partner-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c9962a" stroke-width="2" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+            Financial Institutions
+          </div>
+          <div class="partner-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c9962a" stroke-width="2" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+            Agricultural Companies
+          </div>
+          <div class="partner-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c9962a" stroke-width="2" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+            Mining Companies
+          </div>
+          <div class="partner-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c9962a" stroke-width="2" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+            Healthcare Providers
+          </div>
+          <div class="partner-row">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c9962a" stroke-width="2" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+            Infrastructure Developers
+          </div>
+        </div>
+
+        <a href="#contact" class="btn-primary" style="margin-top: 36px; display: inline-flex;">
+          Become a Partner
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-info">
+      <div class="section-eyebrow">
+        <div class="section-eyebrow-line"></div>
+        <span class="section-eyebrow-text">Get In Touch</span>
+      </div>
+      <h2 class="section-title">Let's Build<br>Something Together</h2>
+      <p class="section-desc" style="margin-bottom: 40px;">
+        Whether you're an investor, a government body, or an enterprise seeking growth, we'd love to explore how Honey Star Resources can deliver value for you.
+      </p>
+
+      <div class="contact-detail">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <div class="contact-detail-label">Office</div>
+          <div class="contact-detail-val">No. 13 Parakau Street, Wuse 2<br>Abuja, Federal Capital Territory, Nigeria</div>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div>
+          <div class="contact-detail-label">Email</div>
+          <div class="contact-detail-val">info.honeystar.resources@gmail.com</div>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012.03 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div>
+          <div class="contact-detail-label">Phone</div>
+          <div class="contact-detail-val">+234 803 091 4017</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <div class="form-row">
+        <label class="form-label">Full Name</label>
+        <input class="form-input" type="text" placeholder="Your full name">
+      </div>
+      <div class="form-row">
+        <label class="form-label">Email Address</label>
+        <input class="form-input" type="email" placeholder="your@email.com">
+      </div>
+      <div class="form-row">
+        <label class="form-label">Area of Interest</label>
+        <select class="form-select">
+          <option value="">Select a service area</option>
+          <option>Financial Services</option>
+          <option>Investment Promotion</option>
+          <option>Government Relations</option>
+          <option>Agriculture & Agribusiness</option>
+          <option>Mining & Minerals Development</option>
+          <option>Energy</option>
+          <option>Real Estate Development</option>
+          <option>Healthcare</option>
+          <option>Infrastructure</option>
+          <option>International Trade</option>
+          <option>Strategic Consulting</option>
+          <option>Project Development</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Message</label>
+        <textarea class="form-textarea" placeholder="Tell us about your project or enquiry…"></textarea>
+      </div>
+      <button class="form-submit">Send Enquiry</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-name">Honey Star Resources</span>
+      <span class="brand-sub">Limited · Est. 2024 · Abuja, Nigeria</span>
+      <p>A diversified development and investment firm connecting Africa's resources to the world's opportunities.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#services">Financial Services</a></li>
+        <li><a href="#services">Investment Promotion</a></li>
+        <li><a href="#services">Government Relations</a></li>
+        <li><a href="#services">Energy</a></li>
+        <li><a href="#services">Mining & Minerals</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Sectors</h5>
+      <ul>
+        <li><a href="#sectors">Agriculture</a></li>
+        <li><a href="#sectors">Real Estate</a></li>
+        <li><a href="#sectors">Healthcare</a></li>
+        <li><a href="#sectors">Infrastructure</a></li>
+        <li><a href="#sectors">International Trade</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#why">Why Choose Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 Honey Star Resources Limited. All rights reserved.</p>
+    <p>No. 13 Parakau Street, Wuse 2, Abuja, Nigeria</p>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  document.querySelector('.form-submit').addEventListener('click', function() {
+    const name = document.querySelector('input[type="text"]').value;
+    const email = document.querySelector('input[type="email"]').value;
+    if (name && email) {
+      this.textContent = 'Enquiry Sent ✓';
+      this.style.background = '#2d6e44';
+      setTimeout(() => {
+        this.textContent = 'Send Enquiry';
+        this.style.background = '';
+      }, 3000);
+    } else {
+      this.textContent = 'Please fill required fields';
+      this.style.background = '#8a3a1a';
+      setTimeout(() => {
+        this.textContent = 'Send Enquiry';
+        this.style.background = '';
+      }, 2000);
+    }
+  });
+</script>
+
+</body>
+</html>
