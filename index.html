@@ -474,6 +474,57 @@
     letter-spacing: 0.02em;
   }
 
+  /* ACTIVE NAV LINK */
+  .nav-links a.active { color: var(--gold-light); }
+
+  /* SAFE AREA — iPhone notch / home bar */
+  @supports (padding-bottom: env(safe-area-inset-bottom)) {
+    footer { padding-bottom: calc(28px + env(safe-area-inset-bottom)); }
+    .mobile-menu { padding-bottom: calc(24px + env(safe-area-inset-bottom)); }
+  }
+
+  /* TOUCH — remove hover ghost on mobile */
+  @media (hover: none) {
+    .service-card:hover, .why-feature:hover, .gov-card:hover,
+    .adv-item:hover, .partner-row:hover, .sector-item:hover { background: initial; border-color: initial; }
+  }
+
+  /* GOVERNANCE */
+  .gov-card {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 18px;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .gov-card:hover {
+    border-color: var(--gold);
+    background: var(--white);
+  }
+
+  .gov-icon {
+    width: 36px; height: 36px; flex-shrink: 0;
+    background: rgba(201,150,42,0.1);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .gov-icon svg { width: 17px; height: 17px; stroke: var(--gold); }
+
+  .gov-title {
+    font-size: 13px; font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .gov-desc {
+    font-size: 12px; color: var(--text-muted);
+    line-height: 1.6;
+  }
+
   /* PARTNERSHIP */
   .partner-row {
     display: flex; align-items: center; gap: 14px;
@@ -772,26 +823,209 @@
 
   .hero-star-bg { animation: pulse-gold 8s ease-in-out infinite; }
 
-  /* RESPONSIVE */
-  @media (max-width: 900px) {
-    .nav-links { display: none; }
-    .about-inner, .why-inner, .contact-inner { grid-template-columns: 1fr; }
-    .services-grid { grid-template-columns: 1fr 1fr; }
-    .sectors-list { grid-template-columns: repeat(2, 1fr); }
-    .footer-inner { grid-template-columns: 1fr 1fr; }
-    .hero-stats { flex-wrap: wrap; }
-    .hero-stat { border-right: none; border-bottom: 1px solid rgba(201,150,42,0.15); flex: 0 0 50%; }
-    .about-badge { display: none; }
-    .why-features { grid-template-columns: 1fr; }
+  /* ============================================================
+     HAMBURGER MENU
+     ============================================================ */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column; justify-content: center; align-items: center;
+    width: 40px; height: 40px;
+    background: none; border: none; cursor: pointer;
+    gap: 5px; padding: 4px;
   }
 
+  .nav-hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--gold-light);
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed; top: 70px; left: 0; right: 0; z-index: 99;
+    background: rgba(13,40,24,0.98);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(201,150,42,0.2);
+    flex-direction: column;
+    padding: 16px 5% 24px;
+  }
+
+  .mobile-menu.open { display: flex; }
+
+  .mobile-menu a {
+    display: block;
+    font-size: 15px; font-weight: 500;
+    color: rgba(250,247,240,0.8);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(201,150,42,0.1);
+    transition: color 0.2s;
+  }
+
+  .mobile-menu a:last-child {
+    border-bottom: none;
+    margin-top: 8px;
+    background: var(--gold);
+    color: var(--green-deep);
+    font-weight: 600;
+    padding: 14px 20px;
+    text-align: center;
+    border-radius: 2px;
+  }
+
+  .mobile-menu a:hover { color: var(--gold-light); }
+  .mobile-menu a:last-child:hover { color: var(--green-deep); background: var(--gold-light); }
+
+  /* ============================================================
+     TABLET — 900px
+     ============================================================ */
+  @media (max-width: 900px) {
+
+    /* Nav */
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+
+    /* Hero */
+    .hero { padding: 0 6%; min-height: 100svh; }
+    .hero-content { max-width: 100%; padding-top: 80px; padding-bottom: 180px; }
+    .hero h1 { font-size: clamp(36px, 7vw, 56px); }
+    .hero-desc { font-size: 15px; }
+    .hero-star-bg { width: 80vw; opacity: 0.04; }
+    .hero-stats { flex-wrap: wrap; }
+    .hero-stat { border-right: none; border-bottom: 1px solid rgba(201,150,42,0.15); flex: 0 0 50%; }
+    .hero-stat:nth-child(odd) { border-right: 1px solid rgba(201,150,42,0.15); }
+
+    /* About */
+    .about-inner { grid-template-columns: 1fr; gap: 48px; }
+    .about-visual { max-width: 480px; margin: 0 auto; width: 100%; }
+    .about-badge { display: none; }
+    .about-pillars { grid-template-columns: 1fr 1fr; }
+
+    /* Services */
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .service-card[style*="span 2"] { grid-column: span 2; }
+
+    /* Why */
+    .why-inner { grid-template-columns: 1fr !important; gap: 48px; }
+    .why-features { grid-template-columns: 1fr 1fr !important; }
+    .why-feature[style*="span 2"] { grid-column: span 2; }
+
+    /* Governance */
+    section[id="governance"] > div > div { grid-template-columns: 1fr !important; gap: 48px; }
+
+    /* Advantage */
+    section[id="advantage"] > div > div { grid-template-columns: 1fr !important; gap: 48px; }
+
+    /* Partnership */
+    section[id="partners"] > div > div { grid-template-columns: 1fr !important; gap: 48px; }
+
+    /* Sectors */
+    .sectors-list { grid-template-columns: repeat(2, 1fr); }
+
+    /* Contact */
+    .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+
+    /* Footer */
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; }
+  }
+
+  /* ============================================================
+     PHONE — iOS & Android — 600px
+     ============================================================ */
   @media (max-width: 600px) {
-    .services-grid { grid-template-columns: 1fr; }
-    .sectors-list { grid-template-columns: 1fr 1fr; }
-    .footer-inner { grid-template-columns: 1fr; }
-    .hero h1 { font-size: 40px; }
+
+    /* Base */
     section { padding: 64px 5%; }
+
+    /* Nav */
+    nav { height: 60px; padding: 0 4%; }
+    .mobile-menu { top: 60px; }
+    .nav-logo-text .brand-name { font-size: 15px; }
+    .nav-logo-text .brand-sub { display: none; }
+    .star-svg { width: 30px; height: 30px; }
+
+    /* Hero */
+    .hero { padding: 0 5%; }
+    .hero-content { padding-top: 72px; padding-bottom: 200px; }
+    .hero h1 { font-size: clamp(32px, 9vw, 44px); line-height: 1.1; }
+    .hero-desc { font-size: 14px; margin-bottom: 32px; }
+    .hero-eyebrow { margin-bottom: 20px; }
+    .hero-actions { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .btn-primary, .btn-outline { width: 100%; justify-content: center; }
+    .hero-stat-num { font-size: 28px; }
+    .hero-stat { padding: 20px 5%; }
+
+    /* About */
+    .about-inner { gap: 36px; }
+    .about-img-frame { aspect-ratio: 3/2; }
     .about-pillars { grid-template-columns: 1fr; }
+    .about-body { font-size: 14px; }
+
+    /* Services */
+    .services-grid { grid-template-columns: 1fr; gap: 0; }
+    .service-card[style*="span 2"] { grid-column: span 1 !important; }
+    .services-header { flex-direction: column; align-items: flex-start; }
+    .service-card { padding: 28px 20px; }
+    .service-tags { gap: 6px; }
+    .service-tag { font-size: 11px; padding: 4px 10px; }
+
+    /* Why */
+    .why-features { grid-template-columns: 1fr !important; }
+    .why-feature[style*="span 2"] { grid-column: span 1 !important; }
+    .why-feature { padding: 22px 18px; }
+
+    /* Governance grid */
+    section[id="governance"] > div > div > div:last-child > div { grid-template-columns: 1fr !important; }
+    .gov-card { padding: 14px; }
+
+    /* Advantage grid */
+    section[id="advantage"] > div > div > div:last-child > div { grid-template-columns: 1fr !important; }
+
+    /* Partnership section */
+    section[id="partners"] > div > div > div:last-child > div[style*="flex-direction: column"] { gap: 0; }
+
+    /* ESG blocks */
+    section[id="governance"] > div > div > div:first-child > div[style*="display: flex"] { gap: 8px; }
+
+    /* Sectors */
+    .sectors-list { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .sector-item { padding: 12px 12px; font-size: 12px; }
+
+    /* Contact */
+    .contact-inner { gap: 36px; }
+    .form-input, .form-select, .form-textarea { font-size: 16px; } /* prevent iOS zoom on focus */
+
+    /* Footer */
+    .footer-inner { grid-template-columns: 1fr; gap: 28px; margin-bottom: 32px; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+    footer { padding: 48px 5% 28px; }
+
+    /* Partnership quote block */
+    section[id="partners"] div[style*="font-style: italic"] { font-size: 18px !important; }
+
+    /* Governance ESG row */
+    section[id="governance"] div[style*="display: flex; gap: 12px"] { gap: 6px !important; }
+  }
+
+  /* ============================================================
+     SMALL PHONE — 380px (iPhone SE, small Android)
+     ============================================================ */
+  @media (max-width: 380px) {
+    .hero h1 { font-size: 28px; }
+    .hero-desc { font-size: 13px; }
+    .hero-stat-num { font-size: 24px; }
+    .hero-stat-label { font-size: 10px; }
+    .section-title { font-size: 28px; }
+    .btn-primary, .btn-outline { padding: 12px 20px; font-size: 12px; }
+    .sectors-list { grid-template-columns: 1fr; }
+    .service-tag { font-size: 10px; }
+    .nav-logo-mark { width: 28px; height: 28px; }
   }
 </style>
 </head>
@@ -816,14 +1050,37 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
+    <li><a href="#governance">Governance</a></li>
     <li><a href="#sectors">Sectors</a></li>
     <li><a href="#contact" class="nav-cta">Contact Us</a></li>
   </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" class="mobile-link">About</a>
+  <a href="#services" class="mobile-link">Services</a>
+  <a href="#advantage" class="mobile-link">Our Advantage</a>
+  <a href="#governance" class="mobile-link">Governance</a>
+  <a href="#partners" class="mobile-link">Partnerships</a>
+  <a href="#sectors" class="mobile-link">Sectors</a>
+  <a href="#contact">Contact Us</a>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-bg-pattern"></div>
+  <div style="position:absolute;inset:0;z-index:0;">
+    <img
+      src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1600&q=80&fit=crop"
+      alt="Business professionals collaborating"
+      style="width:100%;height:100%;object-fit:cover;display:block;opacity:0.18;"
+      loading="eager"
+    />
+  </div>
   <svg class="hero-star-bg" viewBox="0 0 700 700" fill="none" xmlns="http://www.w3.org/2000/svg">
     <polygon class="spin-slow" points="350,20 420,250 660,250 475,395 545,630 350,485 155,630 225,395 40,250 280,250"
       fill="none" stroke="#c9962a" stroke-width="2"/>
@@ -874,19 +1131,13 @@
   <div class="about-inner">
     <div class="about-visual">
       <div class="about-img-frame">
-        <div class="about-img-overlay">
-          <svg class="about-img-pattern" viewBox="0 0 300 300" fill="none">
-            <circle cx="150" cy="150" r="120" stroke="#c9962a" stroke-width="1"/>
-            <circle cx="150" cy="150" r="80" stroke="#c9962a" stroke-width="0.5"/>
-            <circle cx="150" cy="150" r="40" stroke="#c9962a" stroke-width="0.5"/>
-            <line x1="30" y1="150" x2="270" y2="150" stroke="#c9962a" stroke-width="0.5"/>
-            <line x1="150" y1="30" x2="150" y2="270" stroke="#c9962a" stroke-width="0.5"/>
-            <line x1="65" y1="65" x2="235" y2="235" stroke="#c9962a" stroke-width="0.3"/>
-            <line x1="235" y1="65" x2="65" y2="235" stroke="#c9962a" stroke-width="0.3"/>
-            <polygon points="150,30 180,120 270,120 200,175 225,265 150,215 75,265 100,175 30,120 120,120"
-              stroke="#c9962a" stroke-width="1" fill="none"/>
-          </svg>
-        </div>
+        <img
+          src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80&fit=crop"
+          alt="Business professionals in boardroom discussion"
+          style="width:100%;height:100%;object-fit:cover;display:block;"
+          loading="lazy"
+        />
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(13,40,24,0.55) 100%);pointer-events:none;"></div>
       </div>
       <div class="about-gold-accent"></div>
       <div class="about-badge">
@@ -1146,6 +1397,37 @@
       <p class="section-desc" style="margin: 16px auto 0; text-align: center;">
         Five pillars that set us apart and make us the partner of choice for investors, governments, and enterprises operating in Nigeria and across Africa.
       </p>
+
+      <!-- Image strip -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:44px;border-radius:3px;overflow:hidden;">
+        <div style="aspect-ratio:16/9;overflow:hidden;position:relative;">
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80&fit=crop"
+            alt="Business strategy meeting"
+            style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;"
+            onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"
+            loading="lazy" />
+          <div style="position:absolute;inset:0;background:rgba(13,40,24,0.3);"></div>
+          <span style="position:absolute;bottom:12px;left:14px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(232,185,74,0.9);">Strategy</span>
+        </div>
+        <div style="aspect-ratio:16/9;overflow:hidden;position:relative;">
+          <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&q=80&fit=crop"
+            alt="Executive boardroom discussion"
+            style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;"
+            onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"
+            loading="lazy" />
+          <div style="position:absolute;inset:0;background:rgba(13,40,24,0.3);"></div>
+          <span style="position:absolute;bottom:12px;left:14px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(232,185,74,0.9);">Leadership</span>
+        </div>
+        <div style="aspect-ratio:16/9;overflow:hidden;position:relative;">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80&fit=crop"
+            alt="Business analytics and financial data"
+            style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;"
+            onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"
+            loading="lazy" />
+          <div style="position:absolute;inset:0;background:rgba(13,40,24,0.3);"></div>
+          <span style="position:absolute;bottom:12px;left:14px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(232,185,74,0.9);">Analytics</span>
+        </div>
+      </div>
     </div>
 
     <div class="why-features" style="grid-template-columns: repeat(3, 1fr);">
@@ -1205,6 +1487,24 @@
         <p style="font-size: 16px; font-weight: 300; color: var(--text-muted); line-height: 1.85; margin-top: 16px; padding-top: 20px; border-top: 1px solid var(--border);">
           Rather than simply providing advisory services, we serve as a <strong style="font-weight: 600; color: var(--text-dark);">long-term strategic partner</strong>, working alongside our clients throughout the entire project lifecycle.
         </p>
+
+        <!-- Stacked image pair -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:32px;">
+          <div style="aspect-ratio:4/3;overflow:hidden;border-radius:2px;position:relative;">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80&fit=crop&crop=faces"
+              alt="Business professional"
+              style="width:100%;height:100%;object-fit:cover;" loading="lazy"/>
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(13,40,24,0.6) 100%);"></div>
+            <span style="position:absolute;bottom:10px;left:10px;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-light);">Expertise</span>
+          </div>
+          <div style="aspect-ratio:4/3;overflow:hidden;border-radius:2px;position:relative;">
+            <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&q=80&fit=crop"
+              alt="Team collaboration"
+              style="width:100%;height:100%;object-fit:cover;" loading="lazy"/>
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(13,40,24,0.6) 100%);"></div>
+            <span style="position:absolute;bottom:10px;left:10px;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-light);">Collaboration</span>
+          </div>
+        </div>
       </div>
 
       <div>
@@ -1390,6 +1690,143 @@
   </div>
 </section>
 
+<!-- CORPORATE GOVERNANCE -->
+<section style="background: var(--white); padding: 96px 5%;" id="governance">
+  <div style="max-width: 1100px; margin: 0 auto;">
+
+    <div style="display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start;">
+
+      <div>
+        <div class="section-eyebrow">
+          <div class="section-eyebrow-line"></div>
+          <span class="section-eyebrow-text">Corporate Governance & Sustainability</span>
+        </div>
+        <h2 class="section-title">Responsible Business,<br>Lasting Impact</h2>
+        <p style="font-size: 16px; font-weight: 300; color: var(--text-muted); line-height: 1.85; margin-top: 16px;">
+          Honey Star Resources is committed to maintaining the highest standards of governance and responsible business conduct.
+        </p>
+        <p style="font-size: 16px; font-weight: 300; color: var(--text-muted); line-height: 1.85; margin-top: 16px;">
+          We integrate Environmental, Social, and Governance (ESG) principles into our business strategy to ensure sustainable growth that benefits our clients, communities, and the continent.
+        </p>
+        <div style="margin-top: 32px; display: flex; gap: 12px;">
+          <div style="text-align: center; flex: 1; padding: 20px 12px; background: var(--cream); border: 1px solid var(--border); border-radius: 2px;">
+            <div style="font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; color: var(--green-mid); line-height: 1;">E</div>
+            <div style="font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-top: 6px;">Environmental</div>
+          </div>
+          <div style="text-align: center; flex: 1; padding: 20px 12px; background: var(--cream); border: 1px solid var(--border); border-radius: 2px;">
+            <div style="font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; color: var(--green-mid); line-height: 1;">S</div>
+            <div style="font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-top: 6px;">Social</div>
+          </div>
+          <div style="text-align: center; flex: 1; padding: 20px 12px; background: var(--cream); border: 1px solid var(--border); border-radius: 2px;">
+            <div style="font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; color: var(--green-mid); line-height: 1;">G</div>
+            <div style="font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-top: 6px;">Governance</div>
+          </div>
+        </div>
+
+        <!-- Governance image -->
+        <div style="margin-top:24px;border-radius:2px;overflow:hidden;position:relative;aspect-ratio:16/7;">
+          <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80&fit=crop"
+            alt="Business analytics and governance"
+            style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"/>
+          <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,40,24,0.5) 0%,transparent 60%);"></div>
+          <div style="position:absolute;bottom:16px;left:18px;">
+            <p style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;">Our Commitment</p>
+            <p style="font-size:13px;color:rgba(250,247,240,0.85);font-weight:300;max-width:240px;">Governance that creates sustainable value for all stakeholders</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px;">Our governance framework emphasizes</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+
+          <div class="gov-card">
+            <div class="gov-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <h4 class="gov-title">Ethical Leadership</h4>
+              <p class="gov-desc">Decisions guided by integrity and principle at every level of the organisation.</p>
+            </div>
+          </div>
+
+          <div class="gov-card">
+            <div class="gov-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <div>
+              <h4 class="gov-title">Transparency</h4>
+              <p class="gov-desc">Open, honest communication with clients, partners, and stakeholders.</p>
+            </div>
+          </div>
+
+          <div class="gov-card">
+            <div class="gov-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+            </div>
+            <div>
+              <h4 class="gov-title">Regulatory Compliance</h4>
+              <p class="gov-desc">Full adherence to Nigerian and international legal and regulatory standards.</p>
+            </div>
+          </div>
+
+          <div class="gov-card">
+            <div class="gov-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            </div>
+            <div>
+              <h4 class="gov-title">Financial Accountability</h4>
+              <p class="gov-desc">Rigorous financial controls and reporting that build investor confidence.</p>
+            </div>
+          </div>
+
+          <div class="gov-card">
+            <div class="gov-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22V12M12 12C10 10 6 9 3 10V3c3-1 7 0 9 2M12 12c2-2 6-3 9-2V3c-3-1-7 0-9 2"/></svg>
+            </div>
+            <div>
+              <h4 class="gov-title">Environmental Responsibility</h4>
+              <p class="gov-desc">Minimising ecological impact and promoting sustainable development practices.</p>
+            </div>
+          </div>
+
+          <div class="gov-card">
+            <div class="gov-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div>
+              <h4 class="gov-title">Community Development</h4>
+              <p class="gov-desc">Creating shared value in the communities where we operate and invest.</p>
+            </div>
+          </div>
+
+          <div class="gov-card">
+            <div class="gov-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+            </div>
+            <div>
+              <h4 class="gov-title">Employee Development</h4>
+              <p class="gov-desc">Investing in our people through training, growth, and a culture of excellence.</p>
+            </div>
+          </div>
+
+          <div class="gov-card">
+            <div class="gov-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            </div>
+            <div>
+              <h4 class="gov-title">Responsible Investment</h4>
+              <p class="gov-desc">Deploying capital into projects that generate positive, lasting returns for all.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- PARTNERSHIP PHILOSOPHY -->
 <section style="background: var(--green-deep); padding: 96px 5%;" id="partners">
   <div style="max-width: 1100px; margin: 0 auto;">
@@ -1408,10 +1845,16 @@
         <p style="font-size: 16px; font-weight: 300; color: rgba(250,247,240,0.6); line-height: 1.85; margin-top: 16px;">
           Honey Star Resources actively partners with organisations that share our commitment to impact — structuring every relationship to create measurable economic, financial, and social value.
         </p>
-        <div style="margin-top: 36px; padding: 28px; border: 1px solid rgba(201,150,42,0.25); border-radius: 2px; background: rgba(201,150,42,0.05);">
-          <p style="font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--gold-light); line-height: 1.5; font-style: italic;">
-            "Every partnership is designed to create measurable economic, financial, and social impact."
-          </p>
+        <div style="margin-top: 36px; border-radius: 2px; overflow:hidden; position:relative;">
+          <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?w=700&q=80&fit=crop"
+            alt="Business partnership handshake"
+            style="width:100%;height:200px;object-fit:cover;display:block;" loading="lazy"/>
+          <div style="position:absolute;inset:0;background:rgba(13,40,24,0.72);"></div>
+          <div style="position:absolute;inset:0;display:flex;align-items:center;padding:28px;">
+            <p style="font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; color: var(--gold-light); line-height: 1.5; font-style: italic;">
+              "Every partnership is designed to create measurable economic, financial, and social impact."
+            </p>
+          </div>
         </div>
       </div>
 
@@ -1479,9 +1922,21 @@
         <span class="section-eyebrow-text">Get In Touch</span>
       </div>
       <h2 class="section-title">Let's Build<br>Something Together</h2>
-      <p class="section-desc" style="margin-bottom: 40px;">
+      <p class="section-desc" style="margin-bottom: 32px;">
         Whether you're an investor, a government body, or an enterprise seeking growth, we'd love to explore how Honey Star Resources can deliver value for you.
       </p>
+
+      <!-- Contact image -->
+      <div style="border-radius:2px;overflow:hidden;position:relative;aspect-ratio:16/8;margin-bottom:36px;">
+        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=700&q=80&fit=crop"
+          alt="Team working together"
+          style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"/>
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(13,40,24,0.6) 0%,rgba(13,40,24,0.2) 100%);"></div>
+        <div style="position:absolute;bottom:16px;left:18px;">
+          <p style="font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:2px;">Abuja, Nigeria</p>
+          <p style="font-size:13px;color:rgba(250,247,240,0.85);font-weight:300;">No. 13 Parakau Street, Wuse 2</p>
+        </div>
+      </div>
 
       <div class="contact-detail">
         <div class="contact-icon">
@@ -1594,19 +2049,61 @@
 </footer>
 
 <script>
+  // ── Hamburger / mobile menu ──────────────────────────────────
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  // Close menu on any mobile link click
+  document.querySelectorAll('.mobile-link, .mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // ── Smooth scroll ─────────────────────────────────────────────
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href === '#') return;
       e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
+      const target = document.querySelector(href);
       if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const offset = window.innerWidth < 600 ? 60 : 70;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
       }
     });
   });
 
+  // ── Active nav on scroll ──────────────────────────────────────
+  const sections = document.querySelectorAll('section[id], div[id]');
+  const navLinks = document.querySelectorAll('.nav-links a, .mobile-menu a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+        });
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+
+  // ── Contact form ──────────────────────────────────────────────
   document.querySelector('.form-submit').addEventListener('click', function() {
-    const name = document.querySelector('input[type="text"]').value;
-    const email = document.querySelector('input[type="email"]').value;
+    const name = document.querySelector('input[type="text"]').value.trim();
+    const email = document.querySelector('input[type="email"]').value.trim();
     if (name && email) {
       this.textContent = 'Enquiry Sent ✓';
       this.style.background = '#2d6e44';
@@ -1623,6 +2120,11 @@
       }, 2000);
     }
   });
+
+  // ── iOS: prevent bounce scroll on fixed nav ───────────────────
+  document.addEventListener('touchmove', (e) => {
+    if (mobileMenu.classList.contains('open')) e.preventDefault();
+  }, { passive: false });
 </script>
 
 </body>
